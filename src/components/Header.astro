@@ -4,12 +4,12 @@
 // Research / Publications / Contact は後続フェーズでページを追加したらここに足す。
 const links = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/about", label: "About / CV" },
+  { href: "/publications", label: "Publications" },
+  { href: "/awards", label: "Awards" },
   { href: "/projects", label: "Projects" },
   { href: "/links", label: "Links" },
-  // { href: "/research", label: "Research" },        // TODO: 後続フェーズ
-  // { href: "/publications", label: "Publications" }, // TODO: 後続フェーズ
-  // { href: "/contact", label: "Contact" },           // TODO: 後続フェーズ
+  // { href: "/contact", label: "Contact" }, // TODO: 後続フェーズ
 ];
 
 const current = Astro.url.pathname.replace(/\/+$/, "") || "/";

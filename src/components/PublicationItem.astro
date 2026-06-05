@@ -1,0 +1,65 @@
+---
+interface Props {
+  authors: string;
+  title: string;
+  venue: string;
+  doi?: string;
+  note?: string;
+}
+
+const { authors, title, venue, doi, note } = Astro.props;
+
+// 著者文字列の中で自分の名前を強調表示する。
+// 区切りキャプチャ付き split で、一致部分がそのまま配列要素になる。
+const SELF = ["Naoki Tamura", "田村 直樹"];
+const parts = authors.split(/(Naoki Tamura|田村 直樹)/);
+---
+
+<li class="pub">
+  <p class="pub__authors">
+    {parts.map((p) => (SELF.includes(p) ? <strong>{p}</strong> : p))}
+  </p>
+  <p class="pub__title">{title}</p>
+  <p class="pub__venue muted">{venue}</p>
+  <p class="pub__meta">
+    {doi && (
+      <a href={doi} rel="noopener" target="_blank">DOI</a>
+    )}
+    {note && <span class="pub__note">{note}</span>}
+  </p>
+</li>
+
+<style>
+  .pub {
+    margin: 0 0 var(--space-6);
+    list-style: none;
+  }
+  .pub__authors {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  .pub__title {
+    margin: var(--space-1) 0;
+    font-weight: 600;
+  }
+  .pub__venue {
+    margin: 0;
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+  .pub__meta {
+    margin: var(--space-2) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: 0.85rem;
+  }
+  .pub__note {
+    color: var(--color-text-muted);
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.1rem 0.6rem;
+  }
+</style>

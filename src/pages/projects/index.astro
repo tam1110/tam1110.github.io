@@ -5,24 +5,33 @@ import ProjectCard from "../../components/ProjectCard.astro";
 const projects = [
   {
     title: "OpenUAS",
-    description: "都市空間の利用実態を捉えるためのオープンなデータセット／基盤。エリア表現学習に活用する。",
+    description: "人流データから都市空間の利用実態を捉えたエリア表現データセットのオープンデータ化",
     href: "/projects/openuas",
-    tags: ["Dataset", "Urban Computing"],
+    tags: ["Open Dataset", "Area Embedding", "Human mobility"],
   },
   {
     title: "LocationBind",
-    description: "位置情報と多様なモダリティを結びつける表現学習の手法。場所の意味理解を目指す。",
+    description: "都市で収集される多様なモダリティのデータを共通の潜在空間に整合",
     href: "/projects/locationbind",
-    tags: ["Representation Learning", "Location AI"],
+    tags: ["Area Embedding", "Multimodal Alignment", "Representation Learning"],
+  },
+  {
+    title: "合成人流データ生成",
+    description: "大規模人流データから人口規模かつプライバシーフリーな合成データを生成",
+    href: "/projects/synthetic-people-flow",
+    tags: ["Human Mobility", "Privacy", "Simulation"],
+  },
+  {
+    title: "エリア埋め込みの加法構成性",
+    description: "人流に基づくエリア表現の加法構成性(足し算・引き算に関する性質)を明らかに",
+    href: "/projects/area-embedding-additivity",
+    tags: ["Area Embedding", "Representation Learning", "Human Mobility"],
   },
 ];
 ---
 
 <Layout title="Projects">
   <h1>Projects</h1>
-  <p class="muted">
-    研究プロジェクトの入口です。各Webアプリは別リポジトリで管理し、各ページからリンクします。
-  </p>
 
   <div class="card-grid">
     {projects.map((p) => <ProjectCard {...p} />)}

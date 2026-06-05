@@ -1,0 +1,117 @@
+---
+import Layout from "../components/Layout.astro";
+
+// コンペティション系の受賞
+const competitions = [
+  {
+    date: "2025.11",
+    name: "ACM SIGSPATIAL GIS Cup 2025 / Human Mobility Prediction Challenge 2025",
+    prize: "3rd Prize",
+    work: "Multi-City Next Location Prediction through Mobility-Derived Multi-Pattern Transfer Learning",
+  },
+  {
+    date: "2024.10",
+    name: "Human Mobility Prediction Challenge 2024",
+    prize: "1st Prize (GEOBLEU)",
+    work: "Time-series Stay Frequency for Multi-City Next Location Prediction using Multiple BERTs",
+  },
+  {
+    date: "2023.11",
+    name: "Human Mobility Prediction Challenge 2023",
+    prize: "1st Prize",
+    work: "Human Mobility Prediction Challenge: Next Location Prediction using Spatiotemporal BERT",
+  },
+];
+
+// 論文・発表に対する受賞
+const paperAwards = [
+  {
+    date: "2023.05",
+    name: "情報処理学会 第195回DPS・第107回MBL・第93回ITS・IEICE SeMI 合同研究発表会",
+    prize: "優秀発表賞",
+    work: "滞在ビッグデータに基づくエリア分散表現の加法構成性の分析と活用",
+  },
+  {
+    date: "2021.07",
+    name: "マルチメディア，分散，協調とモバイルシンポジウム (DICOMO2021)",
+    prize: "優秀論文賞",
+    work: "都市を対象とした大規模移動履歴に基づく疑似人流データ生成手法",
+  },
+  {
+    date: "2021.07",
+    name: "マルチメディア，分散，協調とモバイルシンポジウム (DICOMO2021)",
+    prize: "優秀プレゼンテーション賞",
+    work: "都市を対象とした大規模移動履歴に基づく疑似人流データ生成手法",
+  },
+];
+---
+
+<Layout title="Awards">
+  <h1>Awards</h1>
+
+  <h2>論文 / 発表</h2>
+  <ul class="award-list">
+    {
+      paperAwards.map((a) => (
+        <li class="award">
+          <div class="award__head">
+            <span class="award__date muted">{a.date}</span>
+            <span class="award__prize">{a.prize}</span>
+          </div>
+          <p class="award__name">{a.name}</p>
+          <p class="award__work muted">{a.work}</p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>コンペティション</h2>
+  <ul class="award-list">
+    {
+      competitions.map((a) => (
+        <li class="award">
+          <div class="award__head">
+            <span class="award__date muted">{a.date}</span>
+            <span class="award__prize">{a.prize}</span>
+          </div>
+          <p class="award__name">{a.name}</p>
+          <p class="award__work muted">{a.work}</p>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
+
+<style>
+  .award-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-4);
+  }
+  .award {
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .award__head {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .award__date {
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .award__prize {
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+  .award__name {
+    margin: var(--space-1) 0 0;
+    font-weight: 600;
+  }
+  .award__work {
+    margin: var(--space-1) 0 0;
+    font-size: 0.9rem;
+  }
+</style>

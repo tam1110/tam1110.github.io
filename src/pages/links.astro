@@ -1,24 +1,24 @@
 ---
 import Layout from "../components/Layout.astro";
 
-// 確定リンクと、後で埋めるプレースホルダを分けて管理。
 const links = [
   {
     label: "名古屋大学 河口研究室 UCL（メンバーページ）",
     href: "https://www.ucl.nuee.nagoya-u.ac.jp/member/",
     note: "所属研究室",
   },
-  { label: "株式会社オルニス", href: "https://ornis-c.co.jp/", note: "関連企業" },
-  { label: "GitHub", href: "https://github.com/tam1110", note: "@tam1110" },
-  // TODO: 確定したらURLを入れる
-  { label: "Google Scholar", href: null, note: "（準備中）" },
-  { label: "ORCID", href: null, note: "（準備中）" },
+  { label: "株式会社オルニス", href: "https://ornis-c.co.jp/", note: "取締役" },
+  { label: "researchmap", href: "https://researchmap.jp/tamura_naoki" },
+  { label: "Google Scholar", href: "https://scholar.google.co.jp/citations?user=tiixNxAAAAAJ&hl=ja" },
+  { label: "ORCID", href: "https://orcid.org/0000-0002-3362-697X" },
+  { label: "DBLP", href: "https://dblp.uni-trier.de/pid/39/3069.html" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/naoki-tamura-33199029b/" },
+  { label: "GitHub", href: "https://github.com/tam1110" },
 ];
 ---
 
 <Layout title="Links">
   <h1>Links</h1>
-  <p class="muted">所属・プロフィール・コード等の外部リンクです。</p>
 
   <ul class="links">
     {
@@ -36,10 +36,6 @@ const links = [
       ))
     }
   </ul>
-
-  <p class="muted" style="margin-top: var(--space-8)">
-    連絡先: <a href="mailto:tam@ucl.nuee.nagoya-u.ac.jp">tam@ucl.nuee.nagoya-u.ac.jp</a>
-  </p>
 </Layout>
 
 <style>

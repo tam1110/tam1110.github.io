@@ -1,0 +1,270 @@
+---
+import Layout from "../components/Layout.astro";
+import PublicationItem from "../components/PublicationItem.astro";
+
+const journals = [
+  {
+    authors:
+      "Naoki Tamura, Nodira Tillayeva, Haru Terashima, Kazuyuki Shoji, Shin Katayama, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+    title: "Additive Compositionality in Urban Area Embeddings Based on Human Mobility Patterns.",
+    venue: "ACM Transactions on Spatial Algorithms and Systems, 12(3), Article 17, 2026.",
+    doi: "https://doi.org/10.1145/3804448",
+  },
+  {
+    authors:
+      "Haru Terashima, Naoki Tamura, Kazuyuki Shoji, Tahera Hossain, Shin Katayama, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+    title:
+      "CLIFT: Cross-City Mobility-Derived Lifestyle Pattern Transfer for Improved Multi-City Next Location Prediction.",
+    venue: "ACM Transactions on Spatial Algorithms and Systems, 12(2), Article 10, pp. 1–24, 2026.",
+    doi: "https://doi.org/10.1145/3811037",
+  },
+  {
+    authors:
+      "Nodira Tillayeva, Naoki Tamura, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi, Takashi Okumura",
+    title:
+      "Outfitting the Quest for Spatial Spread of Infections: A Review of Mobility Datasets for Population Health Modelling.",
+    venue: "Infectious Disease Modelling, 11(3), pp. 1248–1267, 2026.",
+    doi: "https://doi.org/10.1016/j.idm.2026.03.006",
+  },
+  {
+    authors: "寺島 青, 田村 直樹, 庄子 和之, 片山 晋, 浦野 健太, 米澤 拓郎, 河口 信夫",
+    title: "NSP-BERT：滞在履歴の長期的依存関係を考慮した効率的な滞在予測手法",
+    venue: "情報処理学会論文誌, Vol.67, No.3, pp.558–570, 2026.",
+    doi: "https://doi.org/10.20729/0002008665",
+  },
+  {
+    authors:
+      "Kazuyuki Shoji, Haru Terashima, Naoki Tamura, Shin Katayama, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+    title: "Life Pattern-Based Human Attribute Estimation Using Only GPS Data.",
+    venue: "IEEE Access, 13, pp. 131803–131822, 2025.",
+    doi: "https://doi.org/10.1109/ACCESS.2025.3591811",
+  },
+  {
+    authors: "田村 直樹, 浦野 健太, 青木 俊介, 米澤 拓郎, 河口 信夫",
+    title: "都市を対象とした大規模移動履歴に基づく疑似人流データ生成手法",
+    venue: "情報処理学会論文誌, Vol.64, No.1, pp.123–133, 2023.",
+    doi: "https://doi.org/10.20729/00223417",
+  },
+];
+
+const international = [
+  {
+    authors:
+      "Haru Terashima, Naoki Tamura, Kazuyuki Shoji, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+    title:
+      "Multi-City Next Location Prediction through Mobility-Derived Multi-Pattern Transfer Learning.",
+    venue:
+      "ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems 2025, pp. 1218–1221, 2025.",
+    doi: "https://doi.org/10.1145/3748636.3771311",
+  },
+  {
+    authors:
+      "Nodira Tillayeva, Haru Terashima, Naoki Tamura, Kazuyuki Shoji, Tahera Hossain, Shin Katayama, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+    title: "Discovering Emerging Urban Hotspots Using Satellite Imagery and Human Mobility Data.",
+    venue: "Distributed, Ambient and Pervasive Interactions, HCII 2025, pp. 110–120, 2025.",
+    doi: "https://doi.org/10.1007/978-3-031-92980-9_7",
+  },
+  {
+    authors:
+      "Naoki Tamura, Haru Terashima, Kazuyuki Shoji, Shin Katayama, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+    title: "Additive Compositionality in Urban Area Embeddings Based on Human Mobility Patterns.",
+    venue:
+      "Proceedings of the 32nd ACM International Conference on Advances in Geographic Information Systems, pp. 577–580, 2024.",
+    doi: "https://doi.org/10.1145/3678717.3691279",
+  },
+  {
+    authors:
+      "Kazuyuki Shoji, Haru Terashima, Naoki Tamura, Shin Katayama, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+    title: "Unveiling Human Attributes through Life Pattern Clustering using GPS Data Only.",
+    venue:
+      "Proceedings of the 32nd ACM International Conference on Advances in Geographic Information Systems, pp. 621–624, 2024.",
+    doi: "https://doi.org/10.1145/3678717.3691309",
+  },
+  {
+    authors:
+      "Haru Terashima, Shun Takagi, Naoki Tamura, Kazuyuki Shoji, Tahera Hossain, Shin Katayama, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+    title: "Time-series Stay Frequency for Multi-City Next Location Prediction using Multiple BERTs.",
+    venue: "ACM SIGSPATIAL 2nd HuMob Challenge Workshop, pp. 5–9, 2024.",
+    doi: "https://doi.org/10.1145/3681771.3699909",
+  },
+  {
+    authors:
+      "Haru Terashima, Naoki Tamura, Kazuyuki Shoji, Shin Katayama, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+    title: "Human Mobility Prediction Challenge: Next Location Prediction using Spatiotemporal BERT.",
+    venue: "ACM SIGSPATIAL 1st HuMob Challenge Workshop, pp. 1–6, 2023.",
+    doi: "https://doi.org/10.1145/3615894.3628498",
+  },
+  {
+    authors:
+      "Kohei Yamaguchi, Kazuyuki Shoji, Naoki Tamura, Namiki Sakakura, Yuki Matsukura, Yu Hiranaga, Kohei Shimomura, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+    title: "Understanding Regional Characteristics Through EC Data Analysis.",
+    venue: "HCI International 2023, LNCS 14036, pp. 390–404, 2023.",
+    doi: "https://doi.org/10.1007/978-3-031-34668-2_26",
+  },
+  {
+    authors:
+      "Tomoki Choya, Naoki Tamura, Shin Katayama, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+    title: "CrowdFlowTransformer: Capturing Spatio-Temporal Dependence for Forecasting Human Mobility.",
+    venue: "PerCom Workshops 2023, pp. 496–501, 2023.",
+    doi: "https://doi.org/10.1109/PerComWorkshops56833.2023.10150301",
+  },
+  {
+    authors: "Naoki Tamura, Kenta Urano, Shunsuke Aoki, Takuro Yonezawa, Nobuo Kawaguchi",
+    title:
+      "Synthetic People Flow: Privacy-Preserving Mobility Modeling from Large-Scale Location Data in Urban Areas.",
+    venue: "MobiQuitous 2021, pp. 553–567, 2022.",
+    doi: "https://doi.org/10.1007/978-3-030-94822-1_36",
+  },
+];
+
+const domestic = [
+  {
+    authors: "寺島 青, 坪内 孝太, 山口 修司, 田村 直樹, 庄子 和之, 河口 信夫, 米澤 拓郎",
+    title: "大規模人流データに基づくユーザ固有の移動文脈を考慮した都市空間モデリング",
+    venue: "情報処理学会 第119回モバイルコンピューティングと新社会システム研究会（MBL）, 2026.05.",
+  },
+  {
+    authors: "佐々 葵, 田村 直樹, 片山 晋, 浦野 健太, 米澤 拓郎, 河口 信夫",
+    title: "生成AIを用いた地域情報収集フレームワークに関する一検討",
+    venue:
+      "情報処理学会 第117回モバイルコンピューティングと新社会システム研究会（MBL）・第103回高度交通システムとスマートコミュニティ研究会（ITS）合同研究発表会, 2025.11.",
+  },
+  {
+    authors: "髙木 峻, 寺島 青, 田村 直樹, 庄子 和之, 片山 晋, 浦野 健太, 米澤 拓郎, 河口 信夫",
+    title: "プロスポーツチームにおけるチケット販売最適化に向けた購買データモデリング手法",
+    venue: "マルチメディア，分散，協調とモバイルシンポジウム（DICOMO2025）, 2025.06.",
+    note: "優秀論文賞・ヤングリサーチャー賞",
+  },
+  {
+    authors: "田村 直樹, 関井 大気",
+    title: "SkeletonChain: 時系列3D骨格情報を通じたモダリティ共通埋め込みの連鎖的クロスモーダル学習",
+    venue: "第31回画像センシングシンポジウム（SSII2025）, 2025.05.",
+    note: "スポットライト発表",
+  },
+  {
+    authors:
+      "Naoki Tamura, Kazuyuki Shoji, Shin Katayama, Kenta Urano, Takuro Yonezawa, Nobuo Kawaguchi",
+    title:
+      "OpenUAS: Embeddings of Cities in Japan with Anchor Data for Cross-city Analysis of Area Usage Patterns.",
+    venue: "CoRR, abs/2407.19872, 2024.",
+    doi: "https://doi.org/10.48550/arXiv.2407.19872",
+  },
+  {
+    authors: "田村 直樹, 関井 大気",
+    title: "SkeletonChain: 時系列骨格情報を通じたモダリティ共通文埋め込みのマルチモーダル学習",
+    venue: "第27回画像の認識・理解シンポジウム（MIRU2024）, 2024.08.",
+  },
+  {
+    authors: "田村 直樹, 寺島 青, 庄子 和之, 片山 晋, 浦野 健太, 米澤 拓郎, 河口 信夫",
+    title: "共通潜在空間を介した多様な都市データのクロスモーダル分析手法",
+    venue:
+      "情報処理学会 第210回ヒューマンコンピュータインタラクション研究会（HCI）・第84回ユビキタスコンピューティングシステム研究会（UBI）合同研究発表会, 2024.11.",
+  },
+  {
+    authors:
+      "寺島 青, 髙木 峻, 田村 直樹, 庄子 和之, Tahera Hossain, 片山 晋, 浦野 健太, 米澤 拓郎, 河口 信夫",
+    title: "時系列滞在頻度傾向と移動傾向を組み合わせた移動先予測手法",
+    venue: "情報処理学会 第210回HCI・第84回UBI合同研究発表会, 2024.11.",
+    note: "優秀論文賞",
+  },
+  {
+    authors: "庄子 和之, 寺島 青, 田村 直樹, 片山 晋, 浦野 健太, 米澤 拓郎, 河口 信夫",
+    title: "DiverCityMeter: GPSデータのみを用いた生活パターン多様性から見るCOVID-19の影響分析に関する研究",
+    venue: "情報処理学会 第112回モバイルコンピューティングと新社会システム研究会（MBL）, 2024.09.",
+    note: "優秀論文賞",
+  },
+  {
+    authors: "寺島 青, 田村 直樹, 庄子 和之, 片山 晋, 浦野 健太, 米澤 拓郎, 河口 信夫",
+    title: "NSP-BERT：滞在時間を考慮に入れた効率的なNext Stay予測手法",
+    venue: "マルチメディア，分散，協調とモバイルシンポジウム（DICOMO2024）, 2024.06.",
+    note: "優秀プレゼンテーション賞",
+  },
+  {
+    authors: "寺島 青, 田村 直樹, 庄子 和之, 片山 晋, 浦野 健太, 米澤 拓郎, 河口 信夫",
+    title: "BERTに基づく都市における移動エリア予測手法の提案",
+    venue: "情報処理学会 第199回DPS・第111回MBL・第97回ITS・IEICE SeMI合同研究発表会, 2024.05.",
+    note: "奨励発表賞",
+  },
+  {
+    authors: "坂倉 波輝, 米澤 拓郎, 田村 直樹, 永田 吉輝, 庄子 和之, 山口 公平, 浦野 健太, 河口 信夫",
+    title: "移動ビッグデータを用いた公共空間の価値評価手法",
+    venue: "情報処理学会 第107回モバイルコンピューティングと新社会システム研究会（MBL）, 2023.05.",
+  },
+  {
+    authors: "田村 直樹, 庄子 和之, 浦野 健太, 米澤 拓郎, 河口 信夫",
+    title: "滞在ビッグデータに基づくエリア分散表現の加法構成性の分析と活用",
+    venue: "情報処理学会 第195回DPS・第107回MBL・第93回ITS・IEICE SeMI合同研究発表会, 2023.05.",
+    note: "優秀発表賞",
+  },
+  {
+    authors: "坂倉 波輝, 田村 直樹, 永田 吉輝, 庄子 和之, 浦野 健太, 米澤 拓郎, 河口 信夫",
+    title: "大規模移動履歴に基づく滞在推定結果を用いた公園の滞在特徴の分類手法",
+    venue: "情報処理学会 第75回ユビキタスコンピューティングシステム研究会（UBI）研究発表会, 2022.09.",
+    note: "学生奨励賞",
+  },
+  {
+    authors: "坂倉 波輝, 田村 直樹, 永田 吉輝, 庄子 和之, 浦野 健太, 米澤 拓郎, 河口 信夫",
+    title: "大規模移動履歴に基づく滞在推定結果を用いた公園の滞在特徴の分類手法",
+    venue: "電気・電子・情報関係学会 東海支部連合大会, 2022.08.",
+  },
+  {
+    authors:
+      "東浦 圭亮, 田村 直樹, 平野 流, 鷲田 健斗, 坂倉 波輝, 山口 公平, 浦野 健太, 米澤 拓郎, 河口 信夫",
+    title: "時間粒度が粗密な大規模測位データを用いた移動手段推定に関する研究",
+    venue: "マルチメディア，分散，協調とモバイルシンポジウム（DICOMO2022）, 2022.07.",
+  },
+  {
+    authors: "山口 公平, 田村 直樹, 庄子 和之, 浦野 健太, 米澤 拓郎, 河口 信夫",
+    title: "COVID-19による購買行動の時空間変化の分析",
+    venue: "マルチメディア，分散，協調とモバイルシンポジウム（DICOMO2022）, pp.1266–1272, 2022.07.",
+  },
+  {
+    authors: "田村 直樹, 浦野 健太, 青木 俊介, 米澤 拓郎, 河口 信夫",
+    title: "都市を対象とした大規模移動履歴に基づく疑似人流データ生成手法",
+    venue: "マルチメディア，分散，協調とモバイルシンポジウム（DICOMO2021）, 2021.07.",
+    note: "優秀論文賞・優秀プレゼンテーション賞",
+  },
+];
+---
+
+<Layout title="Publications">
+  <h1>Publications</h1>
+
+  <h2>論文誌</h2>
+  <ol class="pub-list">
+    {journals.map((p) => <PublicationItem {...p} />)}
+  </ol>
+
+  <h2>国際会議 / ワークショップ</h2>
+  <ol class="pub-list">
+    {international.map((p) => <PublicationItem {...p} />)}
+  </ol>
+
+  <h2>その他(国内学会など)</h2>
+  <ol class="pub-list">
+    {domestic.map((p) => <PublicationItem {...p} />)}
+  </ol>
+</Layout>
+
+<style>
+  /* 番号付きの学術リスト表示 */
+  .pub-list {
+    counter-reset: pub;
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-4);
+  }
+  .pub-list :global(.pub) {
+    counter-increment: pub;
+    position: relative;
+    padding-left: 2.2rem;
+  }
+  .pub-list :global(.pub)::before {
+    content: counter(pub) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+</style>

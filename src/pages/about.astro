@@ -1,53 +1,152 @@
 ---
 import Layout from "../components/Layout.astro";
+
+const interests = [
+  "都市コンピューティング",
+  "人流モデリング",
+  "位置情報データ解析",
+  "時空間データマイニング",
+  "表現学習",
+];
+
+const education = [
+  { period: "2023.04 – 現在", body: "名古屋大学 大学院工学研究科 情報・通信工学専攻 博士後期課程" },
+  { period: "2021.04 – 2023.03", body: "名古屋大学 大学院工学研究科 情報・通信工学専攻 博士前期課程 修了" },
+  { period: "2017.04 – 2021.03", body: "名古屋大学 工学部 電気電子情報工学科 卒業" },
+  { period: "2017.03", body: "福岡県立鞍手高等学校 卒業" },
+];
+
+const experience = [
+  { period: "2025.10 – 2026.05", body: "株式会社GEOTRA インターンシップ / アルバイト" },
+  { period: "2024.02 – 2025.09", body: "株式会社サイバーエージェント AI Lab インターンシップ / アルバイト" },
+  { period: "2024.04 – 現在", body: "株式会社オルニス 取締役" },
+];
+
+const grants = [
+  {
+    period: "2024.10 – 2027.03",
+    body:
+      "JST 戦略的創造研究推進事業 ACT-X「AI共生社会を拓くサイバーインフラストラクチャ」研究領域 — 「共通潜在空間を介したマルチモーダル都市データの統合的な活用」（研究代表者, グラント番号: JPMJAX24M8）",
+  },
+];
+
+const programs = [
+  {
+    period: "2023.04 – 2026.03",
+    body: "東海国立大学機構 融合フロンティア次世代研究事業（融合フロンティア次世代リサーチャー）",
+  },
+  {
+    period: "2021.04 – 現在",
+    body:
+      "名古屋大学 卓越大学院プログラム「ライフスタイル革命のための超学際移動イノベーション人材養成学位プログラム（TMI）」",
+  },
+];
+
+const internships = [
+  { period: "2021.09", body: "株式会社NTTデータ 短期インターンシップ（2週間）" },
+  { period: "2021.09", body: "株式会社野村総合研究所（NRI）短期インターンシップ（1週間）" },
+  { period: "2021.08", body: "KDDI株式会社 短期インターンシップ（1週間）" },
+];
 ---
 
-<Layout title="About">
-  <h1>About</h1>
+<Layout title="About / CV">
+  <h1>About / CV</h1>
 
-  <p class="muted">
-    ※ 以下はプレースホルダの下書きです。経歴・研究関心などは適宜書き換えてください。
-  </p>
-
-  <h2>略歴</h2>
   <p>
-    田村 直樹（Naoki Tamura）。名古屋大学 河口研究室（UCL: Urban Computing Lab）に所属し、
-    都市・人流データを対象とした研究を行っています。株式会社オルニスにも関わっています。
+    田村 直樹（Naoki Tamura）は、名古屋大学 大学院工学研究科 情報・通信工学専攻 博士後期課程に在籍し、
+    都市における人流・位置情報データ解析、エリア・移動軌跡表現学習、マルチモーダル都市データ分析に
+    取り組んでいます。株式会社オルニスの共同創業者で取締役を兼務しています。
   </p>
 
-  <h2>所属</h2>
-  <ul>
-    <li>名古屋大学 河口研究室 (UCL)</li>
-    <li>株式会社オルニス</li>
+  <h2>研究分野</h2>
+  <ul class="tags">
+    {interests.map((i) => <li>{i}</li>)}
   </ul>
 
-  <h2>研究関心</h2>
-  <ul>
-    <li>Urban Computing（都市コンピューティング）</li>
-    <li>Human Mobility Analysis（人流解析）</li>
-    <li>Geospatial Representation Learning（地理空間表現学習）</li>
-    <li>Location-based AI / Foundation Models</li>
-  </ul>
+  <h2>学歴</h2>
+  <dl class="cv">
+    {
+      education.map((e) => (
+        <div class="cv__row">
+          <dt>{e.period}</dt>
+          <dd>{e.body}</dd>
+        </div>
+      ))
+    }
+  </dl>
 
-  <h2>技術関心</h2>
-  <ul>
-    <li>表現学習・基盤モデル</li>
-    <li>地理空間データ処理・可視化</li>
-    <li>Webアプリケーション（データ可視化・推論API連携）</li>
-  </ul>
+  <h2>職歴</h2>
+  <dl class="cv">
+    {
+      experience.map((e) => (
+        <div class="cv__row">
+          <dt>{e.period}</dt>
+          <dd>{e.body}</dd>
+        </div>
+      ))
+    }
+  </dl>
 
-  <h2>外部リンク</h2>
-  <ul>
-    <li>
-      <a href="https://www.ucl.nuee.nagoya-u.ac.jp/member/" rel="noopener" target="_blank">
-        名古屋大学 河口研究室 UCL（メンバーページ）
-      </a>
-    </li>
-    <li>
-      <a href="https://ornis-c.co.jp/" rel="noopener" target="_blank">株式会社オルニス</a>
-    </li>
-    <li>
-      <a href="https://github.com/tam1110" rel="noopener" target="_blank">GitHub</a>
-    </li>
-  </ul>
+  <h2>研究助成</h2>
+  <dl class="cv">
+    {
+      grants.map((e) => (
+        <div class="cv__row">
+          <dt>{e.period}</dt>
+          <dd>{e.body}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <h2>フェローシップ</h2>
+  <dl class="cv">
+    {
+      programs.map((e) => (
+        <div class="cv__row">
+          <dt>{e.period}</dt>
+          <dd>{e.body}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <h2>短期インターンシップ</h2>
+  <dl class="cv">
+    {
+      internships.map((e) => (
+        <div class="cv__row">
+          <dt>{e.period}</dt>
+          <dd>{e.body}</dd>
+        </div>
+      ))
+    }
+  </dl>
 </Layout>
+
+<style>
+  .cv {
+    margin: var(--space-4) 0 0;
+  }
+  .cv__row {
+    display: grid;
+    grid-template-columns: 13rem 1fr;
+    gap: var(--space-4);
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .cv dt {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .cv dd {
+    margin: 0;
+  }
+  @media (max-width: 640px) {
+    .cv__row {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
+  }
+</style>
