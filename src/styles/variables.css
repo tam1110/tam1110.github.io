@@ -1,0 +1,30 @@
+/* デザイントークン — 白背景中心・研究者ページらしいシンプルな配色 */
+:root {
+  /* 配色 */
+  --color-bg: #ffffff;
+  --color-bg-subtle: #f6f7f9;
+  --color-text: #1f2937;
+  --color-text-muted: #5b6573;
+  --color-border: #e5e7eb;
+  --color-accent: #1f6feb;
+  --color-accent-hover: #1554c0;
+
+  /* フォント */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+
+  /* 余白・レイアウト */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --content-width: 760px;
+  --radius: 10px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+}

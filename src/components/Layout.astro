@@ -1,0 +1,45 @@
+---
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "田村 直樹 (Naoki Tamura) の個人サイト。名古屋大学 河口研究室 / UCL。Urban Computing と Human Mobility の研究プロフィール・プロジェクト紹介。",
+} = Astro.props;
+
+const fullTitle = title === "Home" ? "Naoki Tamura (田村 直樹)" : `${title} — Naoki Tamura`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <!-- OGP（最小限。画像は後続フェーズで追加） -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="container">
+        <slot />
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

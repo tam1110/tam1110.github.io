@@ -1,0 +1,39 @@
+---
+import Layout from "../../components/Layout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+
+const projects = [
+  {
+    title: "OpenUAS",
+    description: "都市空間の利用実態を捉えるためのオープンなデータセット／基盤。エリア表現学習に活用する。",
+    href: "/projects/openuas",
+    tags: ["Dataset", "Urban Computing"],
+  },
+  {
+    title: "LocationBind",
+    description: "位置情報と多様なモダリティを結びつける表現学習の手法。場所の意味理解を目指す。",
+    href: "/projects/locationbind",
+    tags: ["Representation Learning", "Location AI"],
+  },
+];
+---
+
+<Layout title="Projects">
+  <h1>Projects</h1>
+  <p class="muted">
+    研究プロジェクトの入口です。各Webアプリは別リポジトリで管理し、各ページからリンクします。
+  </p>
+
+  <div class="card-grid">
+    {projects.map((p) => <ProjectCard {...p} />)}
+  </div>
+</Layout>
+
+<style>
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+</style>

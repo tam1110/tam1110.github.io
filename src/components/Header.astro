@@ -1,0 +1,91 @@
+---
+// グローバルナビ。
+// 現状は実在するページのみリンクする（リンク切れ防止）。
+// Research / Publications / Contact は後続フェーズでページを追加したらここに足す。
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/links", label: "Links" },
+  // { href: "/research", label: "Research" },        // TODO: 後続フェーズ
+  // { href: "/publications", label: "Publications" }, // TODO: 後続フェーズ
+  // { href: "/contact", label: "Contact" },           // TODO: 後続フェーズ
+];
+
+const current = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const isActive = (href: string) => {
+  const h = href.replace(/\/+$/, "") || "/";
+  return h === "/" ? current === "/" : current === h || current.startsWith(h + "/");
+};
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__brand" href="/">Naoki Tamura</a>
+    <nav aria-label="メインナビゲーション">
+      <ul class="site-header__nav">
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .site-header__brand {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--color-text);
+  }
+  .site-header__brand:hover {
+    text-decoration: none;
+    color: var(--color-accent);
+  }
+  .site-header__nav {
+    list-style: none;
+    display: flex;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+  .site-header__nav li {
+    margin: 0;
+  }
+  .site-header__nav a {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+  .site-header__nav a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .site-header__nav a[aria-current="page"] {
+    color: var(--color-text);
+  }
+</style>

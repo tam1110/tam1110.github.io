@@ -1,0 +1,21 @@
+# build output
+dist/
+
+# dependencies
+node_modules/
+
+# generated types
+.astro/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# environment / editor
+.env
+.env.production
+.DS_Store
+
+# harness / tooling session state (not part of the site)
+.claude/

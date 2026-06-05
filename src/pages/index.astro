@@ -1,0 +1,106 @@
+---
+import Layout from "../components/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const keywords = [
+  "Urban Computing",
+  "Human Mobility Analysis",
+  "Geospatial Representation Learning",
+  "Location-based AI / Foundation Models",
+];
+
+const projects = [
+  {
+    title: "OpenUAS",
+    description: "都市空間の利用実態を捉えるためのオープンなデータセット／基盤。エリア表現学習に活用する。",
+    href: "/projects/openuas",
+    tags: ["Dataset", "Urban Computing"],
+  },
+  {
+    title: "LocationBind",
+    description: "位置情報と多様なモダリティを結びつける表現学習の手法。場所の意味理解を目指す。",
+    href: "/projects/locationbind",
+    tags: ["Representation Learning", "Location AI"],
+  },
+];
+---
+
+<Layout title="Home">
+  <!-- Hero -->
+  <section class="hero">
+    <p class="hero__eyebrow muted">名古屋大学 河口研究室 / UCL</p>
+    <h1 class="hero__name">
+      田村 直樹
+      <span class="hero__name-en">Naoki Tamura</span>
+    </h1>
+    <p class="hero__bio">
+      都市・人流データを対象に、地理空間表現学習や位置情報を活用したAIの研究に取り組んでいます。
+      研究成果とプロジェクトをここにまとめ、各Webアプリへの入口としています。
+    </p>
+
+    <ul class="tags">
+      {keywords.map((kw) => <li>{kw}</li>)}
+    </ul>
+
+    <div class="button-row">
+      <a class="button button--primary" href="/projects">Projects を見る</a>
+      <a class="button" href="/about">About</a>
+      <a class="button" href="https://github.com/tam1110" rel="noopener" target="_blank">GitHub</a>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section>
+    <h2>Featured Projects</h2>
+    <div class="card-grid">
+      {projects.map((p) => <ProjectCard {...p} />)}
+    </div>
+  </section>
+
+  <!-- Recent Publications（Markdown管理は後続フェーズ） -->
+  <section>
+    <h2>Recent Publications</h2>
+    <p class="muted">
+      論文・発表は準備中です。今後 Publications ページで整理していきます。
+    </p>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding: var(--space-8) 0 var(--space-4);
+  }
+  .hero__eyebrow {
+    font-size: 0.9rem;
+    margin: 0 0 var(--space-2);
+  }
+  .hero__name {
+    font-family: var(--font-serif);
+    font-size: 2.4rem;
+    margin: 0 0 var(--space-4);
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .hero__name-en {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+  .hero__bio {
+    max-width: 60ch;
+    color: var(--color-text);
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+  @media (max-width: 640px) {
+    .hero__name {
+      font-size: 1.9rem;
+    }
+  }
+</style>

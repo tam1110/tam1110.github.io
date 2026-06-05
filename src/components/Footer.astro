@@ -1,0 +1,60 @@
+---
+// 外部リンクは Links ページと共通の値を使う。
+const year = 2026; // ビルド環境に依存しないよう固定（更新時は手動で）。
+const links = [
+  { href: "https://github.com/tam1110", label: "GitHub" },
+  { href: "https://www.ucl.nuee.nagoya-u.ac.jp/member/", label: "UCL (河口研究室)" },
+  { href: "https://ornis-c.co.jp/", label: "株式会社オルニス" },
+  { href: "mailto:tam@ucl.nuee.nagoya-u.ac.jp", label: "Contact" },
+];
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <ul class="site-footer__links">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} rel="noopener" target={link.href.startsWith("http") ? "_blank" : undefined}>
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="site-footer__copy muted">© {year} Naoki Tamura (田村 直樹)</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg-subtle);
+    padding: var(--space-8) 0;
+    margin-top: var(--space-16);
+  }
+  .site-footer__links {
+    list-style: none;
+    margin: 0 0 var(--space-3);
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+  .site-footer__links li {
+    margin: 0;
+  }
+  .site-footer__links a {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .site-footer__links a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .site-footer__copy {
+    font-size: 0.85rem;
+    margin: 0;
+  }
+</style>

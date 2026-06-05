@@ -1,0 +1,58 @@
+---
+import Layout from "../components/Layout.astro";
+
+// 確定リンクと、後で埋めるプレースホルダを分けて管理。
+const links = [
+  {
+    label: "名古屋大学 河口研究室 UCL（メンバーページ）",
+    href: "https://www.ucl.nuee.nagoya-u.ac.jp/member/",
+    note: "所属研究室",
+  },
+  { label: "株式会社オルニス", href: "https://ornis-c.co.jp/", note: "関連企業" },
+  { label: "GitHub", href: "https://github.com/tam1110", note: "@tam1110" },
+  // TODO: 確定したらURLを入れる
+  { label: "Google Scholar", href: null, note: "（準備中）" },
+  { label: "ORCID", href: null, note: "（準備中）" },
+];
+---
+
+<Layout title="Links">
+  <h1>Links</h1>
+  <p class="muted">所属・プロフィール・コード等の外部リンクです。</p>
+
+  <ul class="links">
+    {
+      links.map((link) => (
+        <li>
+          {link.href ? (
+            <a href={link.href} rel="noopener" target="_blank">
+              {link.label}
+            </a>
+          ) : (
+            <span>{link.label}</span>
+          )}
+          {link.note && <span class="links__note muted"> — {link.note}</span>}
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="muted" style="margin-top: var(--space-8)">
+    連絡先: <a href="mailto:tam@ucl.nuee.nagoya-u.ac.jp">tam@ucl.nuee.nagoya-u.ac.jp</a>
+  </p>
+</Layout>
+
+<style>
+  .links {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-6);
+  }
+  .links li {
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .links__note {
+    font-size: 0.9rem;
+  }
+</style>
