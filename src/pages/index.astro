@@ -158,6 +158,15 @@ const projects = [
     <p><a href="/publications">すべての出版物を見る →</a></p>
   </section>
 
+  <!-- 研究助成 -->
+  <section>
+    <h2>研究助成</h2>
+    <p class="grant">
+      <span class="grant__date muted">2024.10 – 2027.03</span>
+      JST 戦略的創造研究推進事業 ACT-X「AI共生社会を拓くサイバーインフラストラクチャ」研究領域 — 「共通潜在空間を介したマルチモーダル都市データの統合的な活用」（研究代表者）
+    </p>
+  </section>
+
   <!-- 受賞 -->
   <section>
     <h2>受賞</h2>
@@ -278,6 +287,16 @@ const projects = [
     flex: 0 0 4rem;
     font-size: 0.85rem;
     font-variant-numeric: tabular-nums;
+  }
+
+  .grant {
+    margin-top: var(--space-4);
+  }
+  .grant__date {
+    display: block;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: var(--space-1);
   }
 
   .hero__links {
