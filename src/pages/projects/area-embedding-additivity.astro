@@ -1,9 +1,171 @@
 ---
 import Layout from "../../components/Layout.astro";
+
+const description =
+  "人流に基づくエリア表現において、ベクトルの足し算・平均がエリアの意味や空間的な合成に対応する性質を分析";
+
+const tags = ["Area Embedding", "Representation Learning", "Human Mobility"];
+
+const relatedLinks = [
+  { label: "Journal Paper", href: "https://doi.org/10.1145/3804448" },
+  { label: "Conference Paper", href: "https://doi.org/10.1145/3678717.3691279" },
+  { label: "IPSJ", href: "https://ipsj.ixsq.nii.ac.jp/records/225870" },
+  { label: "UCLab Database", href: "https://db.uclab.jp/show/1575" },
+  { label: "MBL2023 Award", href: "https://mbl.ipsj.or.jp/excellent/2023/" },
+  {
+    label: "Slide",
+    href: "https://speakerdeck.com/tam1110/yi-dong-bitugudetaniji-dukudi-li-qing-bao-nomai-meip-mibekutoruhua",
+  },
+];
+
+const bibtex = `@article{tamura2026additiveCompositionality,
+  title={Additive Compositionality in Urban Area Embeddings Based on Human Mobility Patterns},
+  author={Tamura, Naoki and Tillayeva, Nodira and Terashima, Haru and Shoji, Kazuyuki and Katayama, Shin and Urano, Kenta and Yonezawa, Takuro and Kawaguchi, Nobuo},
+  journal={ACM Transactions on Spatial Algorithms and Systems},
+  year={2026},
+  doi={10.1145/3804448}
+}
+
+@inproceedings{tamura2024additiveCompositionality,
+  title={Additive Compositionality in Urban Area Embeddings Based on Human Mobility Patterns},
+  author={Tamura, Naoki and Terashima, Haru and Shoji, Kazuyuki and Katayama, Shin and Urano, Kenta and Yonezawa, Takuro and Kawaguchi, Nobuo},
+  booktitle={Proceedings of the 32nd ACM International Conference on Advances in Geographic Information Systems},
+  pages={577--580},
+  year={2024},
+  publisher={ACM},
+  doi={10.1145/3678717.3691279}
+}
+
+@techreport{tamura2023areaAdditivity,
+  title={滞在ビッグデータに基づくエリア分散表現の加法構成性の分析と活用},
+  author={田村 直樹 and 庄子 和之 and 浦野 健太 and 米澤 拓郎 and 河口 信夫},
+  institution={情報処理学会},
+  journal={研究報告モバイルコンピューティングと新社会システム（MBL）},
+  volume={2023-MBL-107},
+  number={55},
+  pages={1--8},
+  year={2023}
+}`;
 ---
 
-<Layout title="エリア埋め込みの加法構成性">
+<Layout title="エリア埋め込みの加法構成性" description={description}>
   <p class="muted"><a href="/projects">← Projects</a></p>
   <h1>エリア埋め込みの加法構成性</h1>
-  <p class="muted">準備中です。</p>
+  <ul class="tags">
+    {tags.map((t) => <li>{t}</li>)}
+  </ul>
+
+  <p>
+    エリア埋め込みの加法構成性は、人流データから学習したエリアのベクトル表現において、複数エリアの足し算・平均が、エリア利用パターンの合成や空間的な集約に対応する性質を分析する研究です。Area2Vecなどで得られるエリア埋め込みに対して、再学習を行わずに空間単位の変換や時系列変化の分析を行うことを目指しています。
+  </p>
+
+  <p class="resource-links">
+    <a href="https://doi.org/10.1145/3804448" rel="noopener" target="_blank">Journal Paper</a> /
+    <a href="https://doi.org/10.1145/3678717.3691279" rel="noopener" target="_blank">Conference Paper</a> /
+    <a href="https://ipsj.ixsq.nii.ac.jp/records/225870" rel="noopener" target="_blank">IPSJ</a> /
+    <a href="https://mbl.ipsj.or.jp/excellent/2023/" rel="noopener" target="_blank">Award</a>
+  </p>
+
+  <h2>概要</h2>
+  <p>
+    人流データに基づくエリア埋め込みは、都市内の各エリアを「人がどのように滞在・移動しているか」に基づいてベクトルとして表現します。これにより、商業地、住宅地、オフィス街、観光地のようなエリアの特徴を、施設情報や行政区分だけに依存せずに分析できます。
+  </p>
+  <p>
+    一方で、エリア埋め込みは通常、あらかじめ定義されたメッシュやゾーン単位で学習されます。そのため、複数のメッシュをまとめた地域単位で分析したい場合や、都市の一部を異なる空間単位に変換したい場合には、再度データを集計してモデルを学習し直す必要がありました。
+  </p>
+  <p>
+    この研究では、単語埋め込みで知られている加法構成性の考え方をエリア埋め込みに導入し、複数エリアのベクトルを出現頻度に基づいて平均することで、統合されたエリアの利用パターンを近似できるかを分析しています。例えば、複数の小さなメッシュのベクトルを合成することで、より大きな地域単位のエリア表現を構成できます。
+  </p>
+  <p>
+    また、この性質を利用することで、学習済みのエリア埋め込みを用いた空間単位の変換、複数エリアの意味的な合成、異なる期間の埋め込み間の差分に基づく人流変化の分析が可能になります。
+  </p>
+
+  <figure class="figure">
+    <img
+      src="/images/additive_method.webp"
+      alt="エリア埋め込みの加法構成性の概念図"
+      width="1800"
+      height="692"
+    />
+    <figcaption class="muted">エリア埋め込みの加法構成性の概念図</figcaption>
+  </figure>
+
+  <h2>論文</h2>
+
+  <h3>論文誌</h3>
+  <p>
+    Naoki Tamura, Nodira Tillayeva, Haru Terashima, Kazuyuki Shoji, Shin Katayama, Kenta Urano, Takuro Yonezawa, and Nobuo Kawaguchi.<br />
+    <strong>Additive Compositionality in Urban Area Embeddings Based on Human Mobility Patterns.</strong><br />
+    ACM Transactions on Spatial Algorithms and Systems, 2026.<br />
+    DOI: <a href="https://doi.org/10.1145/3804448" rel="noopener" target="_blank">10.1145/3804448</a>
+  </p>
+
+  <h3>国際会議</h3>
+  <p>
+    Naoki Tamura, Haru Terashima, Kazuyuki Shoji, Shin Katayama, Kenta Urano, Takuro Yonezawa, and Nobuo Kawaguchi.<br />
+    <strong>Additive Compositionality in Urban Area Embeddings Based on Human Mobility Patterns.</strong><br />
+    Proceedings of the 32nd ACM International Conference on Advances in Geographic Information Systems, pp.577–580, 2024.<br />
+    DOI: <a href="https://doi.org/10.1145/3678717.3691279" rel="noopener" target="_blank">10.1145/3678717.3691279</a>
+  </p>
+
+  <h3>国内研究会</h3>
+  <p>
+    田村 直樹, 庄子 和之, 浦野 健太, 米澤 拓郎, 河口 信夫.<br />
+    <strong>滞在ビッグデータに基づくエリア分散表現の加法構成性の分析と活用.</strong><br />
+    研究報告モバイルコンピューティングと新社会システム（MBL）, 2023-MBL-107(55), pp.1–8, 2023. <strong>優秀発表賞</strong>
+  </p>
+
+  <pre><code>{bibtex}</code></pre>
+
+  <h2>関連リンク</h2>
+  <ul class="related-links">
+    {
+      relatedLinks.map((l) => (
+        <li>
+          {l.label}:{" "}
+          <a href={l.href} rel="noopener" target="_blank">
+            {l.href}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </Layout>
+
+<style>
+  .tags {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+  .resource-links {
+    font-size: 0.95rem;
+  }
+  .figure {
+    margin: var(--space-6) 0;
+  }
+  .figure img {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .figure figcaption {
+    margin-top: var(--space-2);
+    font-size: 0.85rem;
+  }
+  .related-links a {
+    overflow-wrap: anywhere;
+  }
+  pre {
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    overflow-x: auto;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+  }
+</style>
