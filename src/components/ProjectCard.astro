@@ -7,6 +7,9 @@ interface Props {
 }
 
 const { title, description, href, tags = [] } = Astro.props;
+
+const locale = Astro.currentLocale ?? "ja";
+const more = locale === "en" ? "View details →" : "詳しく見る →";
 ---
 
 <a class="project-card" href={href}>
@@ -21,7 +24,7 @@ const { title, description, href, tags = [] } = Astro.props;
       </ul>
     )
   }
-  <span class="project-card__more">詳しく見る →</span>
+  <span class="project-card__more">{more}</span>
 </a>
 
 <style>
