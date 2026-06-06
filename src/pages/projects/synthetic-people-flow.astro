@@ -1,9 +1,168 @@
 ---
 import Layout from "../../components/Layout.astro";
+
+const description =
+  "大規模移動履歴から、都市スケールかつプライバシーに配慮した疑似人流データを生成する研究";
+
+const tags = ["Human Mobility", "Privacy", "Simulation"];
+
+const relatedLinks = [
+  { label: "Journal Paper", href: "https://doi.org/10.20729/00223417" },
+  { label: "CiNii", href: "https://cir.nii.ac.jp/crid/1390857757571081088" },
+  {
+    label: "Conference Paper",
+    href: "https://link.springer.com/chapter/10.1007/978-3-030-94822-1_36",
+  },
+  { label: "UCLab Database", href: "https://db.uclab.jp/show/1423" },
+  { label: "DICOMO2021 Awards", href: "https://www.dicomo.org/2021/commendation/" },
+  { label: "Talk Video", href: "https://www.youtube.com/watch?v=zsgPR1nU1bI" },
+];
+
+const bibtex = `@article{tamura2023syntheticHumanFlow,
+  title={都市を対象とした大規模移動履歴に基づく疑似人流データ生成手法},
+  author={田村 直樹 and 浦野 健太 and 青木 俊介 and 米澤 拓郎 and 河口 信夫},
+  journal={情報処理学会論文誌},
+  volume={64},
+  number={1},
+  pages={123--133},
+  year={2023},
+  doi={10.20729/00223417}
+}
+
+@incollection{tamura2022syntheticPeopleFlow,
+  title={Synthetic People Flow: Privacy-Preserving Mobility Modeling from Large-Scale Location Data in Urban Areas},
+  author={Tamura, Naoki and Urano, Kenta and Aoki, Shunsuke and Yonezawa, Takuro and Kawaguchi, Nobuo},
+  booktitle={Mobile and Ubiquitous Systems: Computing, Networking and Services},
+  pages={553--567},
+  year={2022},
+  publisher={Springer},
+  doi={10.1007/978-3-030-94822-1_36}
+}`;
 ---
 
-<Layout title="合成人流データ生成">
+<Layout title="合成人流データ生成" description={description}>
   <p class="muted"><a href="/projects">← Projects</a></p>
   <h1>合成人流データ生成</h1>
+  <ul class="tags">
+    {tags.map((t) => <li>{t}</li>)}
+  </ul>
+
+  <p>
+    合成人流データ生成は、大規模な移動履歴データから人々の移動・滞在傾向をモデル化し、都市スケールの疑似的な人流データを生成する研究です。実在ユーザの移動軌跡をそのまま含まないデータを生成することで、都市計画、交通分析、感染症シミュレーションなどに利用しやすい人流データの構築を目指しています。
+  </p>
+
+  <p class="resource-links">
+    <a href="https://doi.org/10.20729/00223417" rel="noopener" target="_blank">Journal Paper</a> /
+    <a href="https://link.springer.com/chapter/10.1007/978-3-030-94822-1_36" rel="noopener" target="_blank">Conference Paper</a> /
+    <a href="https://cir.nii.ac.jp/crid/1390857757571081088" rel="noopener" target="_blank">CiNii</a> /
+    <a href="https://www.dicomo.org/2021/commendation/" rel="noopener" target="_blank">Award</a>
+  </p>
+
+  <figure class="figure">
+    <img
+      src="/images/syn_pflow_thumnail.webp"
+      alt="生成された合成人流データの可視化（名古屋, 24万エージェント）"
+      width="1600"
+      height="772"
+    />
+    <figcaption class="muted">生成された合成人流データの可視化（名古屋, 24万エージェント）</figcaption>
+  </figure>
+
+  <h2>概要</h2>
+  <p>
+    都市計画や交通シミュレーション、感染症リスク評価などでは、都市全体で人がどのように移動・滞在しているかを表す人流データが重要です。一方で、現実の移動履歴データには住所や職場などの個人に関わる情報が含まれ得るため、そのまま共有・利用することは容易ではありません。
+  </p>
+  <p>
+    この研究では、GPS由来の大規模移動履歴データからユーザの移動・滞在傾向を学習し、実在ユーザの軌跡を直接含まない疑似的な人流データを生成します。具体的には、Agent2Vecに基づく人流モデリングによりユーザごとの行動傾向を表現し、学習したモデルから都市内を移動する合成エージェントを生成します。各エージェントの移動先や滞在を確率的に決定することで、都市全体の人流傾向を近似する合成軌跡データを構築します。
+  </p>
+  <p>
+    このアプローチにより、実在ユーザの移動履歴を直接共有せずに、人流分析やシミュレーションに利用可能なデータを生成できます。また、教師なし学習によりユーザの移動傾向をモデル化するため、特別なラベル付けを必要とせず、GPS由来の移動履歴データから都市スケールの疑似人流を生成できる点が特徴です。
+  </p>
+
+  <figure class="figure">
+    <img
+      src="/images/agent_day.webp"
+      alt="生成された合成エージェント1人の1日の移動軌跡の例"
+      width="1800"
+      height="903"
+    />
+    <figcaption class="muted">
+      生成された合成エージェント1人の1日の移動軌跡の例（オルニスで開発中のWebアプリOrGISで可視化）
+    </figcaption>
+  </figure>
+
+  <h2>デモ / Webアプリケーション</h2>
   <p class="muted">準備中です。</p>
+
+  <h2>論文</h2>
+
+  <h3>Journal Article</h3>
+  <p>
+    田村 直樹, 浦野 健太, 青木 俊介, 米澤 拓郎, 河口 信夫.<br />
+    <strong>都市を対象とした大規模移動履歴に基づく疑似人流データ生成手法.</strong><br />
+    情報処理学会論文誌, Vol.64, No.1, pp.123–133, 2023.<br />
+    DOI: <a href="https://doi.org/10.20729/00223417" rel="noopener" target="_blank">10.20729/00223417</a>
+  </p>
+
+  <h3>International Conference</h3>
+  <p>
+    Naoki Tamura, Kenta Urano, Shunsuke Aoki, Takuro Yonezawa, and Nobuo Kawaguchi.<br />
+    <strong>Synthetic People Flow: Privacy-Preserving Mobility Modeling from Large-Scale Location Data in Urban Areas.</strong><br />
+    MobiQuitous 2021, pp.553–567, 2022.<br />
+    DOI: <a href="https://doi.org/10.1007/978-3-030-94822-1_36" rel="noopener" target="_blank">10.1007/978-3-030-94822-1_36</a>
+  </p>
+
+  <pre><code>{bibtex}</code></pre>
+
+  <h2>関連リンク</h2>
+  <ul class="related-links">
+    {
+      relatedLinks.map((l) => (
+        <li>
+          {l.label}:{" "}
+          <a href={l.href} rel="noopener" target="_blank">
+            {l.href}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </Layout>
+
+<style>
+  .tags {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+  .resource-links {
+    font-size: 0.95rem;
+  }
+  .figure {
+    margin: var(--space-6) 0;
+  }
+  .figure img {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .figure figcaption {
+    margin-top: var(--space-2);
+    font-size: 0.85rem;
+  }
+  .related-links a {
+    overflow-wrap: anywhere;
+  }
+  pre {
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    overflow-x: auto;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+  }
+</style>
