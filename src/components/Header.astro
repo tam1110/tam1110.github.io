@@ -1,40 +1,59 @@
 ---
-// グローバルナビ。
-// 現状は実在するページのみリンクする（リンク切れ防止）。
-// Research / Publications / Contact は後続フェーズでページを追加したらここに足す。
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About / CV" },
-  { href: "/publications", label: "Publications" },
-  { href: "/awards", label: "Awards" },
-  { href: "/projects", label: "Projects" },
-  { href: "/links", label: "Links" },
-  // { href: "/contact", label: "Contact" }, // TODO: 後続フェーズ
+// グローバルナビ + 言語トグル。
+const locale = Astro.currentLocale ?? "ja";
+const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
+// ロケール接頭辞を除いた基準パス
+const base = locale === "en" ? path.replace(/^\/en/, "") || "/" : path;
+
+// 英語版が存在するページ（翻訳を追加するたびにここへ足す）
+const enReady = ["/", "/about", "/publications", "/awards", "/projects", "/links"];
+
+const enPath = (b: string) => (b === "/" ? "/en" : "/en" + b);
+// 現在 en かつ英語版が存在する場合のみ /en、なければ日本語にフォールバック
+const navHref = (b: string) => (locale === "en" && enReady.includes(b) ? enPath(b) : b);
+
+const nav = [
+  { base: "/", label: "Home" },
+  { base: "/about", label: "About / CV" },
+  { base: "/publications", label: "Publications" },
+  { base: "/awards", label: "Awards" },
+  { base: "/projects", label: "Projects" },
+  { base: "/links", label: "Links" },
 ];
 
-const current = Astro.url.pathname.replace(/\/+$/, "") || "/";
-const isActive = (href: string) => {
-  const h = href.replace(/\/+$/, "") || "/";
-  return h === "/" ? current === "/" : current === h || current.startsWith(h + "/");
-};
+const isActive = (b: string) =>
+  b === "/" ? base === "/" : base === b || base.startsWith(b + "/");
+
+// 言語トグルのリンク先。
+// 現在 en のページなら EN は自分自身、JA は接頭辞を外したパス。
+// 現在 ja のページなら JA は自分自身、EN は英語版がある場合のみ /en、無ければ英語トップへ。
+const jaHref = base;
+const enHref = locale === "en" ? path : enReady.includes(base) ? enPath(base) : "/en";
 ---
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-header__brand" href="/">Naoki Tamura</a>
-    <nav aria-label="メインナビゲーション">
-      <ul class="site-header__nav">
-        {
-          links.map((link) => (
-            <li>
-              <a href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>
-                {link.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <a class="site-header__brand" href={navHref("/")}>Naoki Tamura</a>
+    <div class="site-header__right">
+      <nav aria-label="Main navigation">
+        <ul class="site-header__nav">
+          {
+            nav.map((link) => (
+              <li>
+                <a href={navHref(link.base)} aria-current={isActive(link.base) ? "page" : undefined}>
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <div class="site-header__lang" aria-label="Language">
+        <a href={jaHref} class={locale === "ja" ? "is-active" : undefined}>JA</a>
+        <span aria-hidden="true">/</span>
+        <a href={enHref} class={locale === "en" ? "is-active" : undefined}>EN</a>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -65,6 +84,12 @@ const isActive = (href: string) => {
     text-decoration: none;
     color: var(--color-accent);
   }
+  .site-header__right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
   .site-header__nav {
     list-style: none;
     display: flex;
@@ -87,5 +112,24 @@ const isActive = (href: string) => {
   }
   .site-header__nav a[aria-current="page"] {
     color: var(--color-text);
+  }
+  .site-header__lang {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+  .site-header__lang a {
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+  .site-header__lang a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .site-header__lang a.is-active {
+    color: var(--color-text);
+    text-decoration: underline;
   }
 </style>

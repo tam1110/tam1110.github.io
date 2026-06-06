@@ -1,46 +1,44 @@
 ---
-import Layout from "../components/Layout.astro";
+import Layout from "../../components/Layout.astro";
 
-// コンペティション系の受賞
 const competitions = [
   {
-    date: "2025.11",
+    date: "Nov 2025",
     name: "ACM SIGSPATIAL GIS Cup 2025 / Human Mobility Prediction Challenge 2025",
     prize: "3rd Prize",
     work: "Multi-City Next Location Prediction through Mobility-Derived Multi-Pattern Transfer Learning",
   },
   {
-    date: "2024.10",
+    date: "Oct 2024",
     name: "Human Mobility Prediction Challenge 2024",
     prize: "1st Prize (GEOBLEU)",
     work: "Time-series Stay Frequency for Multi-City Next Location Prediction using Multiple BERTs",
   },
   {
-    date: "2023.11",
+    date: "Nov 2023",
     name: "Human Mobility Prediction Challenge 2023",
     prize: "1st Prize",
     work: "Human Mobility Prediction Challenge: Next Location Prediction using Spatiotemporal BERT",
   },
 ];
 
-// 論文・発表に対する受賞
 const paperAwards = [
   {
-    date: "2023.05",
-    name: "情報処理学会 第107回MBL研究会",
-    prize: "優秀発表賞",
+    date: "May 2023",
+    name: "IPSJ 107th MBL Research Meeting",
+    prize: "Outstanding Presentation Award",
     work: "滞在ビッグデータに基づくエリア分散表現の加法構成性の分析と活用",
   },
   {
-    date: "2021.07",
-    name: "マルチメディア，分散，協調とモバイルシンポジウム (DICOMO2021)",
-    prize: "優秀論文賞",
+    date: "Jul 2021",
+    name: "Multimedia, Distributed, Cooperative, and Mobile Symposium (DICOMO2021)",
+    prize: "Best Paper Award",
     work: "都市を対象とした大規模移動履歴に基づく疑似人流データ生成手法",
   },
   {
-    date: "2021.07",
-    name: "マルチメディア，分散，協調とモバイルシンポジウム (DICOMO2021)",
-    prize: "優秀プレゼンテーション賞",
+    date: "Jul 2021",
+    name: "Multimedia, Distributed, Cooperative, and Mobile Symposium (DICOMO2021)",
+    prize: "Outstanding Presentation Award",
     work: "都市を対象とした大規模移動履歴に基づく疑似人流データ生成手法",
   },
 ];
@@ -49,7 +47,7 @@ const paperAwards = [
 <Layout title="Awards">
   <h1>Awards</h1>
 
-  <h2>論文 / 発表</h2>
+  <h2>Paper / Presentation Awards</h2>
   <ul class="award-list">
     {
       paperAwards.map((a) => (
@@ -65,7 +63,7 @@ const paperAwards = [
     }
   </ul>
 
-  <h2>コンペティション</h2>
+  <h2>Competition Awards</h2>
   <ul class="award-list">
     {
       competitions.map((a) => (

@@ -1,47 +1,44 @@
 ---
-import Layout from "../components/Layout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import PublicationItem from "../components/PublicationItem.astro";
+import Layout from "../../components/Layout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import PublicationItem from "../../components/PublicationItem.astro";
 
 const interests = [
-  "都市コンピューティング",
-  "人流モデリング",
-  "位置情報データ解析",
-  "時空間データマイニング",
-  "表現学習",
+  "Urban Computing",
+  "Human Mobility Modeling",
+  "Location-based Data Analysis",
+  "Spatio-temporal Data Mining",
+  "Representation Learning",
 ];
 
-// 受賞（論文・発表に対する受賞）
+// Paper / presentation awards
 const awards = [
-  { date: "2023.05", text: "情報処理学会 第107回MBL研究会 — 優秀発表賞" },
-  { date: "2021.07", text: "DICOMO2021 — 優秀論文賞・優秀プレゼンテーション賞" },
+  { date: "May 2023", text: "IPSJ 107th MBL Research Meeting — Outstanding Presentation Award" },
+  { date: "Jul 2021", text: "DICOMO2021 — Best Paper Award & Outstanding Presentation Award" },
 ];
 
-// 招待講演
+// Invited talks
 const invitedTalks = [
   {
-    title: "移動ビッグデータに基づく地理情報の埋め込みベクトル化",
-    venue: "第10回 Geography & Language 勉強会",
-    location: "オンライン",
-    date: "2024年11月27日",
+    title: "Embedding Vectorization of Geospatial Information Based on Mobility Big Data",
+    venue: "10th Geography & Language Workshop",
+    location: "Online",
+    date: "Nov 27, 2024",
     links: [
       {
-        label: "スライド",
+        label: "Slides",
         href: "https://speakerdeck.com/tam1110/yi-dong-bitugudetaniji-dukudi-li-qing-bao-nomai-meip-mibekutoruhua",
       },
-      {
-        label: "イベントページ",
-        href: "https://sites.google.com/view/geography-and-language/studygroup",
-      },
+      { label: "Event page", href: "https://sites.google.com/view/geography-and-language/studygroup" },
     ],
   },
 ];
 
-// コンペティション
+// Competitions
 const competitions = [
-  { date: "2025.11", text: "ACM SIGSPATIAL GIS Cup 2025 — 3rd Prize" },
-  { date: "2024.10", text: "Human Mobility Prediction Challenge 2024 — 1st Prize (GEOBLEU)" },
-  { date: "2023.11", text: "Human Mobility Prediction Challenge 2023 — 1st Prize" },
+  { date: "Nov 2025", text: "ACM SIGSPATIAL GIS Cup 2025 — 3rd Prize" },
+  { date: "Oct 2024", text: "Human Mobility Prediction Challenge 2024 — 1st Prize (GEOBLEU)" },
+  { date: "Nov 2023", text: "Human Mobility Prediction Challenge 2023 — 1st Prize" },
 ];
 
 const selectedPubs = [
@@ -61,12 +58,6 @@ const selectedPubs = [
     doi: "https://doi.org/10.48550/arXiv.2407.19872",
   },
   {
-    authors: "田村 直樹, 浦野 健太, 青木 俊介, 米澤 拓郎, 河口 信夫",
-    title: "都市を対象とした大規模移動履歴に基づく疑似人流データ生成手法",
-    venue: "情報処理学会論文誌, Vol.64, No.1, pp.123–133, 2023.",
-    doi: "https://doi.org/10.20729/00223417",
-  },
-  {
     authors: "Naoki Tamura, Kenta Urano, Shunsuke Aoki, Takuro Yonezawa, Nobuo Kawaguchi",
     title:
       "Synthetic People Flow: Privacy-Preserving Mobility Modeling from Large-Scale Location Data in Urban Areas.",
@@ -75,37 +66,32 @@ const selectedPubs = [
   },
 ];
 
-// ヒーローのプロフィールリンク
-const homeLinks = [
-  { label: "researchmap", href: "https://researchmap.jp/tamura_naoki" },
-  { label: "Google Scholar", href: "https://scholar.google.co.jp/citations?user=tiixNxAAAAAJ&hl=ja" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/naoki-tamura-33199029b/" },
-  { label: "GitHub", href: "https://github.com/tam1110" },
-];
-
 const projects = [
   {
     title: "OpenUAS",
-    description: "人流データから都市空間の利用実態を捉えたエリア表現データセットのオープンデータ化",
-    href: "/projects/openuas",
-    tags: ["Open Dataset", "Area Embedding", "Human mobility"],
+    description:
+      "An open dataset of anchored area embeddings that represent how urban areas are used, based on human mobility data.",
+    href: "/en/projects/openuas",
+    tags: ["Open Dataset", "Area Embedding", "Human Mobility"],
   },
   {
     title: "LocationBind",
-    description: "都市で収集される多様なモダリティのデータを共通の潜在空間に整合",
-    href: "/projects/locationbind",
+    description: "Representation learning that aligns location and diverse modalities in a shared latent space.",
+    href: "/en/projects/locationbind",
     tags: ["Area Embedding", "Multimodal Alignment", "Representation Learning"],
   },
   {
-    title: "合成人流データ生成",
-    description: "大規模人流データから人口規模かつプライバシーフリーな合成データを生成",
-    href: "/projects/synthetic-people-flow",
+    title: "Synthetic People Flow Generation",
+    description:
+      "Generating city-scale, privacy-preserving synthetic people-flow data from large-scale mobility logs.",
+    href: "/en/projects/synthetic-people-flow",
     tags: ["Human Mobility", "Privacy", "Simulation"],
   },
   {
-    title: "エリア埋め込みの加法構成性",
-    description: "人流に基づくエリア表現の加法構成性(足し算・引き算に関する性質)を明らかに",
-    href: "/projects/area-embedding-additivity",
+    title: "Additive Compositionality of Area Embeddings",
+    description:
+      "Analyzing how addition/averaging of mobility-based area embeddings corresponds to spatial composition.",
+    href: "/en/projects/area-embedding-additivity",
     tags: ["Area Embedding", "Representation Learning", "Human Mobility"],
   },
 ];
@@ -115,61 +101,56 @@ const projects = [
   <!-- Hero -->
   <section class="hero">
     <h1 class="hero__name">
-      田村 直樹
-      <span class="hero__name-en">Naoki Tamura</span>
+      Naoki Tamura
+      <span class="hero__name-en">田村 直樹</span>
     </h1>
     <p class="hero__affil">
-      <a href="https://www.ucl.nuee.nagoya-u.ac.jp/" rel="noopener" target="_blank">名古屋大学 工学研究科 河口研究室 博士課程</a>
+      <a href="https://www.ucl.nuee.nagoya-u.ac.jp/" rel="noopener" target="_blank">Ph.D. Student, Kawaguchi Lab (UCLab), Nagoya University</a>
       {" / "}
-      <a href="https://ornis-c.co.jp/" rel="noopener" target="_blank">株式会社オルニス 取締役</a>
+      <a href="https://ornis-c.co.jp/" rel="noopener" target="_blank">Co-founder &amp; Director, Ornis Inc.</a>
     </p>
 
     <ul class="hero__links">
-      {
-        homeLinks.map((l) => (
-          <li>
-            <a href={l.href} rel="noopener" target="_blank">
-              {l.label}
-            </a>
-          </li>
-        ))
-      }
+      <li><a href="https://researchmap.jp/tamura_naoki" rel="noopener" target="_blank">researchmap</a></li>
+      <li><a href="https://scholar.google.co.jp/citations?user=tiixNxAAAAAJ&hl=ja" rel="noopener" target="_blank">Google Scholar</a></li>
+      <li><a href="https://www.linkedin.com/in/naoki-tamura-33199029b/" rel="noopener" target="_blank">LinkedIn</a></li>
+      <li><a href="https://github.com/tam1110" rel="noopener" target="_blank">GitHub</a></li>
     </ul>
 
     <div class="button-row">
-      <a class="button" href="/about">About / CV</a>
-      <a class="button" href="/publications">Publications</a>
-      <a class="button" href="/awards">Awards</a>
-      <a class="button" href="/projects">Projects</a>
+      <a class="button" href="/en/about">About / CV</a>
+      <a class="button" href="/en/publications">Publications</a>
+      <a class="button" href="/en/awards">Awards</a>
+      <a class="button" href="/en/projects">Projects</a>
     </div>
 
-    <h2 class="section-label">研究分野</h2>
+    <h2 class="section-label">Research Interests</h2>
     <ul class="tags">
       {interests.map((i) => <li>{i}</li>)}
     </ul>
   </section>
 
-  <!-- 出版物 -->
+  <!-- Publications -->
   <section>
-    <h2>出版物</h2>
+    <h2>Publications</h2>
     <ol class="pub-list">
       {selectedPubs.map((p) => <PublicationItem {...p} />)}
     </ol>
-    <p><a href="/publications">すべての出版物を見る →</a></p>
+    <p><a href="/en/publications">View all publications →</a></p>
   </section>
 
-  <!-- 研究助成 -->
+  <!-- Grants -->
   <section>
-    <h2>研究助成</h2>
+    <h2>Grants</h2>
     <p class="grant">
-      <span class="grant__date muted">2024.10 – 2027.03</span>
-      JST 戦略的創造研究推進事業 ACT-X「AI共生社会を拓くサイバーインフラストラクチャ」研究領域 — 「共通潜在空間を介したマルチモーダル都市データの統合的な活用」（研究代表者）
+      <span class="grant__date muted">Oct 2024 – Mar 2027</span>
+      JST ACT-X, Research Area “Cyber-Physical Infrastructure for an AI-Symbiotic Society” — “Integrated Utilization of Multimodal Urban Data via a Shared Latent Space” (Principal Investigator)
     </p>
   </section>
 
-  <!-- 受賞 -->
+  <!-- Awards -->
   <section>
-    <h2>受賞</h2>
+    <h2>Awards</h2>
     <ul class="award-brief">
       {
         awards.map((a) => (
@@ -180,17 +161,17 @@ const projects = [
         ))
       }
     </ul>
-    <p><a href="/awards">すべての受賞を見る →</a></p>
+    <p><a href="/en/awards">View all awards →</a></p>
   </section>
 
-  <!-- 招待講演 -->
+  <!-- Invited Talks -->
   <section>
-    <h2>招待講演</h2>
+    <h2>Invited Talks</h2>
     <ul class="talk-list">
       {
         invitedTalks.map((t) => (
           <li class="talk">
-            <p class="talk__title">「{t.title}」</p>
+            <p class="talk__title">{t.title}</p>
             <p class="talk__meta muted">
               {t.venue}, {t.location}, {t.date}
             </p>
@@ -207,9 +188,9 @@ const projects = [
     </ul>
   </section>
 
-  <!-- コンペティション -->
+  <!-- Competitions -->
   <section>
-    <h2>コンペティション</h2>
+    <h2>Competitions</h2>
     <ul class="award-brief">
       {
         competitions.map((a) => (
@@ -220,23 +201,23 @@ const projects = [
         ))
       }
     </ul>
-    <p><a href="/awards">すべての受賞を見る →</a></p>
+    <p><a href="/en/awards">View all awards →</a></p>
   </section>
 
-  <!-- プロジェクト -->
+  <!-- Projects -->
   <section>
-    <h2>プロジェクト</h2>
+    <h2>Projects</h2>
     <div class="card-grid">
       {projects.map((p) => <ProjectCard {...p} />)}
     </div>
   </section>
 
-  <!-- 連絡先 -->
+  <!-- Contact -->
   <section>
-    <h2>連絡先</h2>
-    <p>tam[at]ucl.nuee.nagoya-u.ac.jp <span class="muted">（名古屋大学）</span></p>
-    <p>tamura.naoki[at]ornis-c.co.jp <span class="muted">（株式会社オルニス）</span></p>
-    <p class="muted">※ [at] を @ に置き換えてください。</p>
+    <h2>Contact</h2>
+    <p>tam[at]ucl.nuee.nagoya-u.ac.jp <span class="muted">(Nagoya University)</span></p>
+    <p>tamura.naoki[at]ornis-c.co.jp <span class="muted">(Ornis Inc.)</span></p>
+    <p class="muted">* Replace [at] with @.</p>
   </section>
 </Layout>
 
@@ -263,9 +244,17 @@ const projects = [
     color: var(--color-text-muted);
     font-size: 0.95rem;
   }
-  .hero__bio {
-    max-width: 62ch;
-    color: var(--color-text);
+  .hero__links {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    font-size: 0.9rem;
+  }
+  .hero__links li {
+    margin: 0;
   }
   .section-label {
     font-size: 1.1rem;
@@ -284,7 +273,7 @@ const projects = [
     border-bottom: 1px solid var(--color-border);
   }
   .award-brief__date {
-    flex: 0 0 4rem;
+    flex: 0 0 5.5rem;
     font-size: 0.85rem;
     font-variant-numeric: tabular-nums;
   }
@@ -297,19 +286,6 @@ const projects = [
     font-size: 0.85rem;
     font-variant-numeric: tabular-nums;
     margin-bottom: var(--space-1);
-  }
-
-  .hero__links {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--space-6);
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-    font-size: 0.9rem;
-  }
-  .hero__links li {
-    margin: 0;
   }
 
   .talk-list {

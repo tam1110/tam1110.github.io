@@ -1,0 +1,197 @@
+---
+import Layout from "../../../components/Layout.astro";
+
+const description =
+  "An open dataset of anchored area embeddings representing how urban areas are used, based on human mobility data";
+
+const tags = ["Open Dataset", "Area Embedding", "Human Mobility", "Urban Computing"];
+
+const datasetInfo = [
+  { k: "Dataset name", v: "OpenUAS" },
+  { k: "Cities", v: "Tokyo, Osaka, Nagoya, Sapporo, Fukuoka, Sendai, Hiroshima, Kyoto" },
+  { k: "Scale", v: "1.3M+ 50 m meshes" },
+  { k: "Coverage", v: "~3,300 km²" },
+  { k: "Input", v: "Stay records extracted from GPS-based human mobility data" },
+  { k: "Data volume", v: "175M+ stay records" },
+  {
+    k: "Main outputs",
+    v: "Area embeddings, cluster labels, GeoJSON files, trained models, anchor data",
+  },
+  { k: "Paper DOI", v: "10.48550/arXiv.2407.19872" },
+];
+
+const useCases = [
+  "Functional analysis of areas within a city",
+  "Cross-city similar-area search",
+  "Time-series analysis of urban change",
+  "Characterizing commercial, residential, and office areas",
+  "Applications to urban planning, store-location strategy, and transportation analysis",
+  "Comparing your own location data with open data",
+];
+
+const datasetItems = [
+  "Area embeddings for 8 major cities in Japan",
+  "Trained Area2Vec models",
+  "GeoJSON files for map visualization",
+  "Cluster labels for 5, 10, and 20 clusters",
+  "Cluster visualization HTML built with Kepler.gl",
+  "Stay-trend graphs per cluster",
+  "Anchor data",
+  "Sample data and scripts for training Area2Vec",
+];
+
+const bibtex = `@misc{tamura2024openuas,
+  title={OpenUAS: Embeddings of Cities in Japan with Anchor Data for Cross-city Analysis of Area Usage Patterns},
+  author={Tamura, Naoki and Shoji, Kazuyuki and Katayama, Shin and Urano, Kenta and Yonezawa, Takuro and Kawaguchi, Nobuo},
+  year={2024},
+  eprint={2407.19872},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  doi={10.48550/arXiv.2407.19872}
+}`;
+---
+
+<Layout title="OpenUAS" description={description}>
+  <p class="muted"><a href="/en/projects">← Projects</a></p>
+  <h1>OpenUAS</h1>
+  <ul class="tags">
+    {tags.map((t) => <li>{t}</li>)}
+  </ul>
+
+  <p>
+    OpenUAS is an open dataset that represents how urban space is used as vectors, based on large-scale human mobility data from eight major cities in Japan. For each area in a city, it captures characteristics such as office, residential, and commercial districts from patterns of when and how long people stay.
+  </p>
+
+  <p class="resource-links">
+    <a href="https://arxiv.org/abs/2407.19872" rel="noopener" target="_blank">Paper</a> /
+    <a href="https://zenodo.org/records/13141800" rel="noopener" target="_blank">Dataset</a> /
+    <a href="https://github.com/UCLabNU/OpenUAS" rel="noopener" target="_blank">Code</a> /
+    <a href="https://www.nagoya-u.ac.jp/researchinfo/result/2024/08/-openuas.html" rel="noopener" target="_blank">Press Release</a>
+  </p>
+
+  <figure class="figure">
+    <img
+      src="/images/openuas_thumnail.webp"
+      alt="Clustering of area embedding vectors in Tokyo (OpenUAS)"
+      width="1600"
+      height="846"
+    />
+    <figcaption class="muted">Clustering of area embedding vectors in Tokyo (OpenUAS)</figcaption>
+  </figure>
+
+  <h2>Overview</h2>
+  <p>
+    Urban space is often described by administrative boundaries, land use, or facility information, but these alone do not sufficiently capture how people actually use a place.
+  </p>
+  <p>
+    OpenUAS represents how each area is used as a numerical vector, using stay information extracted from GPS-based mobility data together with Area2Vec. For example, it can analyze areas with long daytime stays on weekdays, areas with concentrated visits on weekends, or areas with many short morning/evening stays — all from human behavior patterns.
+  </p>
+  <p>
+    OpenUAS also uses an anchoring method so that area embeddings from different cities or different periods can be compared in a shared embedding space. This makes it possible to compare area-usage patterns across cities and over time without sharing raw location data — for example, finding areas similar to a given area in another city, or analyzing temporal changes such as before and after a commercial facility opens.
+  </p>
+
+  <h2>Dataset</h2>
+  <p>OpenUAS provides the following data:</p>
+  <ul>
+    {datasetItems.map((item) => <li>{item}</li>)}
+  </ul>
+
+  <figure class="figure">
+    <img
+      src="/images/map_each_city.webp"
+      alt="Clustering of area embedding vectors for each of the eight major cities (OpenUAS)"
+      width="1800"
+      height="780"
+    />
+    <figcaption class="muted">Clustering of area embedding vectors for each of the eight major cities (OpenUAS)</figcaption>
+  </figure>
+
+  <table>
+    <tbody>
+      {
+        datasetInfo.map((row) => (
+          <tr>
+            <th>{row.k}</th>
+            <td>{row.v}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <h2>Use Cases</h2>
+  <p>OpenUAS is intended for uses such as:</p>
+  <ul>
+    {useCases.map((item) => <li>{item}</li>)}
+  </ul>
+
+  <h2>Demo / Web App</h2>
+  <p class="muted">Coming soon.</p>
+
+  <h2>Paper</h2>
+  <p>
+    Naoki Tamura, Kazuyuki Shoji, Shin Katayama, Kenta Urano, Takuro Yonezawa, and Nobuo Kawaguchi.<br />
+    <strong>OpenUAS: Embeddings of Cities in Japan with Anchor Data for Cross-city Analysis of Area Usage Patterns.</strong><br />
+    arXiv:2407.19872, 2024.<br />
+    DOI: <a href="https://doi.org/10.48550/arXiv.2407.19872" rel="noopener" target="_blank">10.48550/arXiv.2407.19872</a>
+  </p>
+  <pre><code>{bibtex}</code></pre>
+</Layout>
+
+<style>
+  .tags {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+  .resource-links {
+    font-size: 0.95rem;
+  }
+  .figure {
+    margin: var(--space-6) 0;
+  }
+  .figure img {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .figure figcaption {
+    margin-top: var(--space-2);
+    font-size: 0.85rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-4) 0;
+    font-size: 0.9rem;
+  }
+  th,
+  td {
+    border: 1px solid var(--color-border);
+    padding: var(--space-2) var(--space-3);
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--color-bg-subtle);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  pre {
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    overflow-x: auto;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+  }
+  @media (max-width: 640px) {
+    th {
+      white-space: normal;
+    }
+  }
+</style>

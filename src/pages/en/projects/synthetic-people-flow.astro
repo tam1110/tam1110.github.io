@@ -1,0 +1,182 @@
+---
+import Layout from "../../../components/Layout.astro";
+
+const description =
+  "Generating city-scale, privacy-preserving synthetic people-flow data from large-scale mobility logs";
+
+const tags = ["Human Mobility", "Privacy", "Simulation"];
+
+const relatedLinks = [
+  { label: "Journal Paper", href: "https://doi.org/10.20729/00223417" },
+  { label: "CiNii", href: "https://cir.nii.ac.jp/crid/1390857757571081088" },
+  {
+    label: "Conference Paper",
+    href: "https://link.springer.com/chapter/10.1007/978-3-030-94822-1_36",
+  },
+  { label: "UCLab Database", href: "https://db.uclab.jp/show/1423" },
+  { label: "DICOMO2021 Awards", href: "https://www.dicomo.org/2021/commendation/" },
+  { label: "Talk Video", href: "https://www.youtube.com/watch?v=zsgPR1nU1bI" },
+];
+
+const bibtex = `@article{tamura2023syntheticHumanFlow,
+  title={都市を対象とした大規模移動履歴に基づく疑似人流データ生成手法},
+  author={田村 直樹 and 浦野 健太 and 青木 俊介 and 米澤 拓郎 and 河口 信夫},
+  journal={情報処理学会論文誌},
+  volume={64},
+  number={1},
+  pages={123--133},
+  year={2023},
+  doi={10.20729/00223417}
+}
+
+@incollection{tamura2022syntheticPeopleFlow,
+  title={Synthetic People Flow: Privacy-Preserving Mobility Modeling from Large-Scale Location Data in Urban Areas},
+  author={Tamura, Naoki and Urano, Kenta and Aoki, Shunsuke and Yonezawa, Takuro and Kawaguchi, Nobuo},
+  booktitle={Mobile and Ubiquitous Systems: Computing, Networking and Services},
+  pages={553--567},
+  year={2022},
+  publisher={Springer},
+  doi={10.1007/978-3-030-94822-1_36}
+}
+
+@inproceedings{tamura2021syntheticPeopleFlowDicomo,
+  title={都市を対象とした大規模移動履歴に基づく疑似人流データ生成手法},
+  author={田村 直樹 and 浦野 健太 and 青木 俊介 and 米澤 拓郎 and 河口 信夫},
+  booktitle={マルチメディア，分散，協調とモバイルシンポジウム（DICOMO2021）},
+  year={2021}
+}`;
+---
+
+<Layout title="Synthetic People Flow Generation" description={description}>
+  <p class="muted"><a href="/en/projects">← Projects</a></p>
+  <h1>Synthetic People Flow Generation</h1>
+  <ul class="tags">
+    {tags.map((t) => <li>{t}</li>)}
+  </ul>
+
+  <p>
+    Synthetic people flow generation models people's movement and stay tendencies from large-scale mobility logs and generates city-scale synthetic people-flow data. By generating data that does not contain real users' trajectories, it aims to build people-flow data that is easy to use for urban planning, traffic analysis, epidemic simulation, and more.
+  </p>
+
+  <p class="resource-links">
+    <a href="https://doi.org/10.20729/00223417" rel="noopener" target="_blank">Journal Paper</a> /
+    <a href="https://link.springer.com/chapter/10.1007/978-3-030-94822-1_36" rel="noopener" target="_blank">Conference Paper</a> /
+    <a href="https://cir.nii.ac.jp/crid/1390857757571081088" rel="noopener" target="_blank">CiNii</a> /
+    <a href="https://www.dicomo.org/2021/commendation/" rel="noopener" target="_blank">Award</a>
+  </p>
+
+  <figure class="figure">
+    <img
+      src="/images/syn_pflow_thumnail.webp"
+      alt="Visualization of generated synthetic people flow (Nagoya, 240k agents)"
+      width="1600"
+      height="772"
+    />
+    <figcaption class="muted">Visualization of generated synthetic people flow (Nagoya, 240k agents)</figcaption>
+  </figure>
+
+  <h2>Overview</h2>
+  <p>
+    Urban planning, traffic simulation, and epidemic risk assessment all rely on people-flow data that describes how people move and stay across an entire city. However, real mobility logs can contain personal information such as home and workplace locations, so they are not easy to share or use directly.
+  </p>
+  <p>
+    This research learns users' movement and stay tendencies from large-scale GPS-based mobility logs and generates synthetic people-flow data that does not directly contain real users' trajectories. Specifically, it represents each user's behavioral tendencies through Agent2Vec-based mobility modeling, and generates synthetic agents that move through the city from the trained model. By probabilistically determining each agent's destinations and stays, it builds synthetic trajectory data that approximates the city-wide people flow.
+  </p>
+  <p>
+    This approach makes it possible to generate data usable for mobility analysis and simulation without directly sharing real users' mobility logs. Because it models user movement tendencies through unsupervised learning, it requires no special labeling and can generate city-scale synthetic people flow from GPS-based mobility logs.
+  </p>
+
+  <figure class="figure">
+    <img
+      src="/images/agent_day.webp"
+      alt="Example of one synthetic agent's daily trajectory"
+      width="1800"
+      height="903"
+    />
+    <figcaption class="muted">
+      Example of one synthetic agent's daily trajectory (visualized in OrGIS, a web app under development at Ornis)
+    </figcaption>
+  </figure>
+
+  <h2>Demo / Web App</h2>
+  <p class="muted">Coming soon.</p>
+
+  <h2>Papers</h2>
+
+  <h3>Journal Article</h3>
+  <p>
+    田村 直樹, 浦野 健太, 青木 俊介, 米澤 拓郎, 河口 信夫.<br />
+    <strong>都市を対象とした大規模移動履歴に基づく疑似人流データ生成手法.</strong><br />
+    情報処理学会論文誌, Vol.64, No.1, pp.123–133, 2023.<br />
+    DOI: <a href="https://doi.org/10.20729/00223417" rel="noopener" target="_blank">10.20729/00223417</a>
+  </p>
+
+  <h3>International Conference</h3>
+  <p>
+    Naoki Tamura, Kenta Urano, Shunsuke Aoki, Takuro Yonezawa, and Nobuo Kawaguchi.<br />
+    <strong>Synthetic People Flow: Privacy-Preserving Mobility Modeling from Large-Scale Location Data in Urban Areas.</strong><br />
+    MobiQuitous 2021, pp.553–567, 2022.<br />
+    DOI: <a href="https://doi.org/10.1007/978-3-030-94822-1_36" rel="noopener" target="_blank">10.1007/978-3-030-94822-1_36</a>
+  </p>
+
+  <h3>Domestic Conference</h3>
+  <p>
+    田村 直樹, 浦野 健太, 青木 俊介, 米澤 拓郎, 河口 信夫.<br />
+    <strong>都市を対象とした大規模移動履歴に基づく疑似人流データ生成手法.</strong><br />
+    Multimedia, Distributed, Cooperative, and Mobile Symposium (DICOMO2021), 2021.07. <strong>Best Paper Award & Outstanding Presentation Award</strong>
+  </p>
+
+  <pre><code>{bibtex}</code></pre>
+
+  <h2>Related Links</h2>
+  <ul class="related-links">
+    {
+      relatedLinks.map((l) => (
+        <li>
+          {l.label}:{" "}
+          <a href={l.href} rel="noopener" target="_blank">
+            {l.href}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
+
+<style>
+  .tags {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+  .resource-links {
+    font-size: 0.95rem;
+  }
+  .figure {
+    margin: var(--space-6) 0;
+  }
+  .figure img {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .figure figcaption {
+    margin-top: var(--space-2);
+    font-size: 0.85rem;
+  }
+  .related-links a {
+    overflow-wrap: anywhere;
+  }
+  pre {
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    overflow-x: auto;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+  }
+</style>

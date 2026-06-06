@@ -1,0 +1,51 @@
+---
+import Layout from "../../../components/Layout.astro";
+import ProjectCard from "../../../components/ProjectCard.astro";
+
+const projects = [
+  {
+    title: "OpenUAS",
+    description:
+      "An open dataset of anchored area embeddings that represent how urban areas are used, based on human mobility data.",
+    href: "/en/projects/openuas",
+    tags: ["Open Dataset", "Area Embedding", "Human Mobility"],
+  },
+  {
+    title: "LocationBind",
+    description: "Representation learning that aligns location and diverse modalities in a shared latent space.",
+    href: "/en/projects/locationbind",
+    tags: ["Area Embedding", "Multimodal Alignment", "Representation Learning"],
+  },
+  {
+    title: "Synthetic People Flow Generation",
+    description:
+      "Generating city-scale, privacy-preserving synthetic people-flow data from large-scale mobility logs.",
+    href: "/en/projects/synthetic-people-flow",
+    tags: ["Human Mobility", "Privacy", "Simulation"],
+  },
+  {
+    title: "Additive Compositionality of Area Embeddings",
+    description:
+      "Analyzing how addition/averaging of mobility-based area embeddings corresponds to spatial composition.",
+    href: "/en/projects/area-embedding-additivity",
+    tags: ["Area Embedding", "Representation Learning", "Human Mobility"],
+  },
+];
+---
+
+<Layout title="Projects">
+  <h1>Projects</h1>
+
+  <div class="card-grid">
+    {projects.map((p) => <ProjectCard {...p} />)}
+  </div>
+</Layout>
+
+<style>
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+</style>

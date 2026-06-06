@@ -1,0 +1,163 @@
+---
+import Layout from "../../components/Layout.astro";
+
+const interests = [
+  "Urban Computing",
+  "Human Mobility Modeling",
+  "Location-based Data Analysis",
+  "Spatio-temporal Data Mining",
+  "Representation Learning",
+];
+
+const education = [
+  {
+    period: "Apr 2023 – Present",
+    body:
+      "Ph.D. program, Department of Information and Communication Engineering, Graduate School of Engineering, Nagoya University",
+  },
+  {
+    period: "Apr 2021 – Mar 2023",
+    body:
+      "M.Eng., Department of Information and Communication Engineering, Graduate School of Engineering, Nagoya University",
+  },
+  {
+    period: "Apr 2017 – Mar 2021",
+    body:
+      "B.Eng., Department of Electrical Engineering, Electronics, and Information Engineering, School of Engineering, Nagoya University",
+  },
+  { period: "Mar 2017", body: "Graduated from Fukuoka Prefectural Kurate High School" },
+];
+
+const experience = [
+  { period: "Oct 2025 – May 2026", body: "Internship / Part-time, GEOTRA Inc." },
+  { period: "Feb 2024 – Sep 2025", body: "Internship / Part-time, CyberAgent AI Lab" },
+  { period: "Apr 2024 – Present", body: "Director, Ornis Inc." },
+];
+
+const grants = [
+  {
+    period: "Oct 2024 – Mar 2027",
+    body:
+      "JST ACT-X, Research Area “Cyber-Physical Infrastructure for an AI-Symbiotic Society” — “Integrated Utilization of Multimodal Urban Data via a Shared Latent Space” (Principal Investigator)",
+  },
+];
+
+const programs = [
+  {
+    period: "Apr 2023 – Mar 2026",
+    body:
+      "Tokai National Higher Education and Research System — Interdisciplinary Frontier Next-Generation Researcher Program (Next-Generation Researcher)",
+  },
+  {
+    period: "Apr 2021 – Present",
+    body:
+      "Nagoya University WISE Program — Graduate Program of Transformative Mobility Innovation for a Lifestyle Revolution (TMI)",
+  },
+];
+
+const internships = [
+  { period: "Sep 2021", body: "NTT DATA Corporation — short-term internship (2 weeks)" },
+  { period: "Sep 2021", body: "Nomura Research Institute (NRI) — short-term internship (1 week)" },
+  { period: "Aug 2021", body: "KDDI Corporation — short-term internship (1 week)" },
+];
+---
+
+<Layout title="About / CV">
+  <h1>About / CV</h1>
+
+  <p>
+    I'm Naoki Tamura, a Ph.D. student in the Department of Information and Communication Engineering, Graduate School of Engineering, Nagoya University. My research interests include human mobility and location-based data analysis, area and trajectory representation learning, and multimodal urban data analysis. I am also a co-founder and director of Ornis Inc.
+  </p>
+
+  <h2>Research Interests</h2>
+  <ul class="tags">
+    {interests.map((i) => <li>{i}</li>)}
+  </ul>
+
+  <h2>Education</h2>
+  <dl class="cv">
+    {
+      education.map((e) => (
+        <div class="cv__row">
+          <dt>{e.period}</dt>
+          <dd>{e.body}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <h2>Experience</h2>
+  <dl class="cv">
+    {
+      experience.map((e) => (
+        <div class="cv__row">
+          <dt>{e.period}</dt>
+          <dd>{e.body}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <h2>Grants</h2>
+  <dl class="cv">
+    {
+      grants.map((e) => (
+        <div class="cv__row">
+          <dt>{e.period}</dt>
+          <dd>{e.body}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <h2>Programs &amp; Fellowships</h2>
+  <dl class="cv">
+    {
+      programs.map((e) => (
+        <div class="cv__row">
+          <dt>{e.period}</dt>
+          <dd>{e.body}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <h2>Short-term Internships</h2>
+  <dl class="cv">
+    {
+      internships.map((e) => (
+        <div class="cv__row">
+          <dt>{e.period}</dt>
+          <dd>{e.body}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</Layout>
+
+<style>
+  .cv {
+    margin: var(--space-4) 0 0;
+  }
+  .cv__row {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: var(--space-4);
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .cv dt {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .cv dd {
+    margin: 0;
+  }
+  @media (max-width: 640px) {
+    .cv__row {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
+  }
+</style>
